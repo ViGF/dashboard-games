@@ -18,10 +18,10 @@ df_genres = df.groupby('Genre', as_index=False)['Global_Sales'].sum().sort_value
 
 # 2-Criação dos Gráficos
 # ==================================================================================================='
-fig_games = px.bar(df_games, x='Name', y='Global_Sales', labels={'Name':'Jogos', 'Global_Sales':'Vendas (Milhão)'}, title='10 Jogos mais vendidos')
+fig_games = px.bar(df_games, x='Name', y='Global_Sales', labels={'Name':'Jogos', 'Global_Sales':'Vendas (Milhões de dólares)'}, title='10 Jogos mais vendidos')
 fig_platforms = px.scatter(df_platforms, x='Global_Sales', y='Platform', title='Vendas por console')
-fig_platforms.update_layout(xaxis_title="Vendas (Milhão)", yaxis_title="Console")
-fig_genres = px.pie(df_genres, values='Global_Sales', title='Vendas por gênero (Milhão)', names='Genre')
+fig_platforms.update_layout(xaxis_title="Vendas (Milhões de dólares)", yaxis_title="Console")
+fig_genres = px.pie(df_genres, values='Global_Sales', title='Vendas por gênero (Milhões de dólares)', names='Genre')
 
 # 3-Instanciar a classe app
 # ===================================================================================================
@@ -82,9 +82,9 @@ def update_figs(region):
     df_platforms = df.groupby('Platform', as_index=False)[region].sum().sort_values(by=region)
     df_genres = df.groupby('Genre', as_index=False)[region].sum().sort_values(by=region)
 
-    fig_games = px.bar(df_games, x='Name', y=region, labels={'Name':'Jogos', region:'Vendas (Milhão)'}, title='10 Jogos mais vendidos')
-    fig_platforms = px.scatter(df_platforms, x=region, y='Platform', labels={'Platform':'Console', region:'Vendas (Milhão)'}, title='Vendas por console')
-    fig_genres = px.pie(df_genres, values=region, title='Vendas por gênero (Milhão)', names='Genre')
+    fig_games = px.bar(df_games, x='Name', y=region, labels={'Name':'Jogos', region:'Vendas (Milhões de dólares)'}, title='10 Jogos mais vendidos')
+    fig_platforms = px.scatter(df_platforms, x=region, y='Platform', labels={'Platform':'Console', region:'Vendas (Milhões de dólares)'}, title='Vendas por console')
+    fig_genres = px.pie(df_genres, values=region, title='Vendas por gênero (Milhões de dólares)', names='Genre')
 
     return fig_platforms, fig_genres, fig_games
 
